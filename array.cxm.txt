@@ -1,0 +1,14 @@
+include `C/C++`;
+
+checker {
+    name = "NO_GOTO";
+    reports =
+        for c in globalset allFunctionCode where c matches gotoStatement : {
+            events = [
+                {
+                    description = "Use of goto is not allowed";
+                    location = c.location;
+                }
+            ];
+        };
+};
